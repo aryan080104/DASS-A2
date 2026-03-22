@@ -12,6 +12,7 @@ from moneypoly.player import Player  # noqa: E402
 from moneypoly.property import Property, PropertyGroup  # noqa: E402
 from moneypoly.game import Game  # noqa: E402
 from moneypoly.bank import Bank  # noqa: E402
+from moneypoly import ui  # noqa: E402
 
 
 class TestMoneyPolyWhiteBox(unittest.TestCase):
@@ -139,6 +140,19 @@ class TestMoneyPolyWhiteBox(unittest.TestCase):
 
         self.assertEqual(bank.get_balance(), bank_start - 75)
         self.assertEqual(player.balance, player_start + 75)
+
+    def test_safe_int_input_returns_default_on_invalid_text(self):
+        """Branch test: invalid integer input should return default value."""
+        import builtins
+
+        old_input = builtins.input
+        try:
+            builtins.input = lambda _prompt: "not-a-number"
+            value = ui.safe_int_input("Enter:", default=99)
+        finally:
+            builtins.input = old_input
+
+        self.assertEqual(value, 99)
 
 
 if __name__ == "__main__":

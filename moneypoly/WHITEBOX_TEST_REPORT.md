@@ -215,3 +215,24 @@ Simplified condition to `if prop.is_mortgaged:`.
 
 ### Verification
 - Static analysis warning for this condition is resolved.
+
+---
+
+## Iteration 11: Replace bare exception in UI parser (`ui.safe_int_input()`)
+
+### Why this test case is needed
+Input parsing is an edge-heavy path. Exception handling must be explicit to avoid masking unrelated runtime problems.
+
+### Error found
+Pylint flagged a bare `except:` in `safe_int_input()`.
+
+### White-box test case
+- Mock input to return invalid text.
+- Verify function follows exception branch and returns default.
+
+### Fix applied
+Changed to `except (ValueError, TypeError):`.
+
+### Verification
+- Added automated test: `test_safe_int_input_returns_default_on_invalid_text`.
+- Tests pass locally.
