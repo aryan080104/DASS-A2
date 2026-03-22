@@ -317,3 +317,19 @@ Removed the unused import.
 
 ### Verification
 - Pylint warning for the player module import is resolved.
+
+---
+
+## Iteration 17: Initialize `doubles_streak` in constructor (`dice.py`)
+
+### Why this test case is needed
+State variables used in decision branches (like consecutive doubles) should be explicitly initialized in `__init__`.
+
+### Error found
+Pylint reported `doubles_streak` defined outside `__init__`.
+
+### Fix applied
+Added `self.doubles_streak = 0` in `Dice.__init__`.
+
+### Verification
+- Attribute initialization warning is resolved.
