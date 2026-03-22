@@ -199,3 +199,19 @@ Removed the unused `math` import.
 
 ### Verification
 - Re-ran static analysis; the `bank.py` unused import warning is resolved.
+
+---
+
+## Iteration 10: Fix mortgaged-property boolean check (`Board.is_purchasable()`)
+
+### Why this test case is needed
+This branch controls whether properties can be bought. Clear boolean checks reduce misread logic during maintenance.
+
+### Error found
+Pylint reported singleton comparison `prop.is_mortgaged == True`.
+
+### Fix applied
+Simplified condition to `if prop.is_mortgaged:`.
+
+### Verification
+- Static analysis warning for this condition is resolved.
