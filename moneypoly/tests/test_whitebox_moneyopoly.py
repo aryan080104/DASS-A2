@@ -10,6 +10,7 @@ if str(PROJECT_SRC) not in sys.path:
 from moneypoly.dice import Dice  # noqa: E402
 from moneypoly.player import Player  # noqa: E402
 from moneypoly.property import Property, PropertyGroup  # noqa: E402
+from moneypoly.game import Game  # noqa: E402
 
 
 class TestMoneyPolyWhiteBox(unittest.TestCase):
@@ -54,6 +55,23 @@ class TestMoneyPolyWhiteBox(unittest.TestCase):
 
         p2.owner = owner
         self.assertTrue(group.all_owned_by(owner))
+
+    def test_pay_rent_transfers_money_to_owner(self):
+        """Branch/state test: rent must decrease payer and increase owner."""
+        game = Game(["P1", "P2"])
+        payer = game.players[0]
+        owner = game.players[1]
+        prop = game.board.properties[0]
+        prop.owner = owner
+
+        payer_start = payer.balance
+        owner_start = owner.balance
+        rent = prop.get_rent()
+
+        game.pay_rent(payer, prop)
+
+        self.assertEqual(payer.balance, payer_start - rent)
+        self.assertEqual(owner.balance, owner_start + rent)
 
 
 if __name__ == "__main__":

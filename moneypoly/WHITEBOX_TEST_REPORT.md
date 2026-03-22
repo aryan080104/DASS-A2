@@ -74,3 +74,25 @@ Replaced `any(...)` with `all(...)` and added a guard for empty groups.
 ### Verification
 - Added automated test: `test_property_group_requires_all_tiles_for_monopoly_state`.
 - Tests pass locally.
+
+---
+
+## Iteration 4: Fix rent transfer logic (`Game.pay_rent()`)
+
+### Why this test case is needed
+Rent is a core money-transfer path. If rent is deducted from one player but not credited to the owner, total money disappears incorrectly.
+
+### Error found
+`Game.pay_rent()` deducted rent from the visiting player but did not add it to the owner.
+
+### White-box test case
+- Set up two players and one owned property.
+- Call `pay_rent()`.
+- Verify both balances: payer decreases, owner increases by exactly the same amount.
+
+### Fix applied
+Added `prop.owner.add_money(rent)` after deducting from payer.
+
+### Verification
+- Added automated test: `test_pay_rent_transfers_money_to_owner`.
+- Tests pass locally.
