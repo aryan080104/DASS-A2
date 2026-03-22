@@ -30,3 +30,25 @@ Updated `Dice.roll()` to use `random.randint(1, 6)` for both dice.
 ### Verification
 - Added automated test: `test_dice_roll_uses_full_six_sided_range`.
 - Test passes locally.
+
+---
+
+## Iteration 2: Fix pass-Go salary logic (`Player.move()`)
+
+### Why this test case is needed
+Player cash flow depends on Go salary. Missing this branch causes incorrect balances and invalid game outcomes.
+
+### Error found
+`Player.move()` only awarded salary when final position was exactly `0`, but it should also award salary when crossing Go.
+
+### White-box test case
+- Set `position=39`, move `1` (lands on Go) and verify salary.
+- Set `position=38`, move `3` (passes Go) and verify salary.
+- This directly tests both branch paths.
+
+### Fix applied
+Changed condition to award salary when `steps > 0` and `old_position + steps >= BOARD_SIZE`.
+
+### Verification
+- Added automated test: `test_player_move_collects_salary_when_passing_or_landing_go`.
+- Tests pass locally.

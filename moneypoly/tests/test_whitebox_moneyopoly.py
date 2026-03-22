@@ -8,6 +8,7 @@ if str(PROJECT_SRC) not in sys.path:
     sys.path.insert(0, str(PROJECT_SRC))
 
 from moneypoly.dice import Dice  # noqa: E402
+from moneypoly.player import Player  # noqa: E402
 
 
 class TestMoneyPolyWhiteBox(unittest.TestCase):
@@ -23,6 +24,20 @@ class TestMoneyPolyWhiteBox(unittest.TestCase):
             self.assertLessEqual(dice.die2, 6)
             self.assertGreaterEqual(total, 2)
             self.assertLessEqual(total, 12)
+
+    def test_player_move_collects_salary_when_passing_or_landing_go(self):
+        """Branch test: salary branch should trigger whenever Go is crossed."""
+        player = Player("A", balance=1000)
+
+        player.position = 39
+        player.move(1)
+        self.assertEqual(player.position, 0)
+        self.assertEqual(player.balance, 1200)
+
+        player.position = 38
+        player.move(3)
+        self.assertEqual(player.position, 1)
+        self.assertEqual(player.balance, 1400)
 
 
 if __name__ == "__main__":
