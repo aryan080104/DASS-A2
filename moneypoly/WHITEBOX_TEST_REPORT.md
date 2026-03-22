@@ -161,3 +161,25 @@ Changed winner selection from `min(...)` to `max(...)` using `net_worth` key.
 ### Verification
 - Added automated test: `test_find_winner_returns_highest_net_worth`.
 - Tests pass locally.
+
+---
+
+## Iteration 8: Fix bank loan accounting (`Bank.give_loan()`)
+
+### Why this test case is needed
+Loans are a key money-transfer path. The bank and player balances must change in opposite directions to preserve accounting correctness.
+
+### Error found
+`Bank.give_loan()` increased player balance but did not decrease bank reserves.
+
+### White-box test case
+- Record initial bank and player balances.
+- Issue a loan.
+- Verify bank decreases by loan amount and player increases by same amount.
+
+### Fix applied
+Updated `give_loan()` to route through `pay_out(amount)` before crediting the player.
+
+### Verification
+- Added automated test: `test_bank_loan_reduces_bank_balance_and_increases_player_balance`.
+- Tests pass locally.

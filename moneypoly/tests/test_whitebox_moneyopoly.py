@@ -11,6 +11,7 @@ from moneypoly.dice import Dice  # noqa: E402
 from moneypoly.player import Player  # noqa: E402
 from moneypoly.property import Property, PropertyGroup  # noqa: E402
 from moneypoly.game import Game  # noqa: E402
+from moneypoly.bank import Bank  # noqa: E402
 
 
 class TestMoneyPolyWhiteBox(unittest.TestCase):
@@ -125,6 +126,19 @@ class TestMoneyPolyWhiteBox(unittest.TestCase):
         winner = game.find_winner()
 
         self.assertIs(winner, game.players[1])
+
+    def test_bank_loan_reduces_bank_balance_and_increases_player_balance(self):
+        """State test: loan issuance must move money from bank to player."""
+        bank = Bank()
+        player = Player("Borrower", balance=100)
+
+        bank_start = bank.get_balance()
+        player_start = player.balance
+
+        bank.give_loan(player, 75)
+
+        self.assertEqual(bank.get_balance(), bank_start - 75)
+        self.assertEqual(player.balance, player_start + 75)
 
 
 if __name__ == "__main__":
