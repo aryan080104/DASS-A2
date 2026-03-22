@@ -352,6 +352,22 @@ De-indented the remaining logic and removed redundant `else`.
 
 ---
 
+## Iteration 22: Add missing final newline (`game.py`)
+
+### Why this test case is needed
+Consistent file formatting avoids noisy diffs and keeps static-analysis output focused on logic.
+
+### Error found
+Pylint reported missing final newline in `game.py`.
+
+### Fix applied
+Added trailing newline at end of file.
+
+### Verification
+- Formatting warning for `game.py` final newline is resolved.
+
+---
+
 ## Iteration 16: Remove unused import in player module (`player.py`)
 
 ### Why this test case is needed
