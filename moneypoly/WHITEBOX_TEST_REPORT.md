@@ -301,3 +301,19 @@ Removed the unused imported constant.
 
 ### Verification
 - Static analysis warning is resolved.
+
+---
+
+## Iteration 16: Remove unused import in player module (`player.py`)
+
+### Why this test case is needed
+Removing dead imports keeps branch-focused code review clean and less error-prone.
+
+### Error found
+Pylint reported unused import `sys` in `player.py`.
+
+### Fix applied
+Removed the unused import.
+
+### Verification
+- Pylint warning for the player module import is resolved.
