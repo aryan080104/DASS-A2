@@ -140,3 +140,24 @@ Added `player.deduct_money(JAIL_FINE)` in the voluntary fine path.
 ### Verification
 - Added automated test: `test_jail_voluntary_fine_deducts_player_balance`.
 - Tests pass locally.
+
+---
+
+## Iteration 7: Fix winner computation (`Game.find_winner()`)
+
+### Why this test case is needed
+Game end logic is decision-critical. Choosing the wrong comparator reverses outcomes.
+
+### Error found
+`find_winner()` used `min(...)` instead of `max(...)`, returning the poorest player.
+
+### White-box test case
+- Set three players with deterministic balances.
+- Verify returned winner is the player with highest balance.
+
+### Fix applied
+Changed winner selection from `min(...)` to `max(...)` using `net_worth` key.
+
+### Verification
+- Added automated test: `test_find_winner_returns_highest_net_worth`.
+- Tests pass locally.

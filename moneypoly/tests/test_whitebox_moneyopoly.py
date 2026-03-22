@@ -115,6 +115,17 @@ class TestMoneyPolyWhiteBox(unittest.TestCase):
         self.assertEqual(player.balance, start_balance - 50)
         self.assertFalse(player.in_jail)
 
+    def test_find_winner_returns_highest_net_worth(self):
+        """Branch/state test: winner logic must choose max worth, not min."""
+        game = Game(["P1", "P2", "P3"])
+        game.players[0].balance = 100
+        game.players[1].balance = 300
+        game.players[2].balance = 200
+
+        winner = game.find_winner()
+
+        self.assertIs(winner, game.players[1])
+
 
 if __name__ == "__main__":
     unittest.main()
