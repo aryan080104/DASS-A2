@@ -117,3 +117,26 @@ Changed affordability check from `<=` to `<`.
 ### Verification
 - Added automated test: `test_buy_property_allows_exact_balance`.
 - Tests pass locally.
+
+---
+
+## Iteration 6: Fix voluntary jail fine deduction (`Game._handle_jail_turn()`)
+
+### Why this test case is needed
+Jail release has multiple branches (card use, voluntary pay, forced release). The voluntary-pay branch must update both bank and player cash.
+
+### Error found
+When a player chose to pay the jail fine, the bank collected money but the player's balance was not deducted.
+
+### White-box test case
+- Put player in jail.
+- Force `confirm()` to return `True` for paying fine.
+- Stub movement resolution so only jail logic is evaluated.
+- Verify player's balance decreases by jail fine and jail status clears.
+
+### Fix applied
+Added `player.deduct_money(JAIL_FINE)` in the voluntary fine path.
+
+### Verification
+- Added automated test: `test_jail_voluntary_fine_deducts_player_balance`.
+- Tests pass locally.

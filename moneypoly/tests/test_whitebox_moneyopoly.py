@@ -87,6 +87,34 @@ class TestMoneyPolyWhiteBox(unittest.TestCase):
         self.assertIs(prop.owner, buyer)
         self.assertIn(prop, buyer.properties)
 
+    def test_jail_voluntary_fine_deducts_player_balance(self):
+        """Branch test: choosing to pay jail fine must reduce player cash."""
+        game = Game(["P1", "P2"])
+        player = game.players[0]
+        player.in_jail = True
+        player.jail_turns = 0
+
+        start_balance = player.balance
+
+        from moneypoly import ui as ui_module  # local import to patch safely
+
+        old_confirm = ui_module.confirm
+        old_roll = game.dice.roll
+        old_move_and_resolve = game._move_and_resolve
+
+        try:
+            ui_module.confirm = lambda _prompt: True
+            game.dice.roll = lambda: 1
+            game._move_and_resolve = lambda _player, _steps: None
+            game._handle_jail_turn(player)
+        finally:
+            ui_module.confirm = old_confirm
+            game.dice.roll = old_roll
+            game._move_and_resolve = old_move_and_resolve
+
+        self.assertEqual(player.balance, start_balance - 50)
+        self.assertFalse(player.in_jail)
+
 
 if __name__ == "__main__":
     unittest.main()
