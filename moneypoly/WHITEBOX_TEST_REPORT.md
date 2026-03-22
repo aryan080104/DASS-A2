@@ -236,3 +236,19 @@ Changed to `except (ValueError, TypeError):`.
 ### Verification
 - Added automated test: `test_safe_int_input_returns_default_on_invalid_text`.
 - Tests pass locally.
+
+---
+
+## Iteration 12: Remove unused import in dice module (`dice.py`)
+
+### Why this test case is needed
+Static warnings should be reduced so genuine control-flow issues stand out during review.
+
+### Error found
+Pylint reported unused import `BOARD_SIZE` in `dice.py`.
+
+### Fix applied
+Removed the unused import.
+
+### Verification
+- Pylint warning for this import is resolved.
