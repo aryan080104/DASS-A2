@@ -336,6 +336,22 @@ Changed `if not (0 <= ...):` to `if not 0 <= ...:` in both places.
 
 ---
 
+## Iteration 21: Remove redundant `else` after `return` (`property.py`)
+
+### Why this test case is needed
+Straight-line control flow makes branch tracing simpler in white-box reviews.
+
+### Error found
+Pylint reported unnecessary `else` block after an early `return` in `unmortgage()`.
+
+### Fix applied
+De-indented the remaining logic and removed redundant `else`.
+
+### Verification
+- `no-else-return` warning for this method is resolved.
+
+---
+
 ## Iteration 16: Remove unused import in player module (`player.py`)
 
 ### Why this test case is needed
