@@ -333,3 +333,19 @@ Added `self.doubles_streak = 0` in `Dice.__init__`.
 
 ### Verification
 - Attribute initialization warning is resolved.
+
+---
+
+## Iteration 18: Remove unnecessary f-string (`game.py`)
+
+### Why this test case is needed
+Lint cleanup helps keep code intent explicit during structural review.
+
+### Error found
+Pylint reported an f-string without interpolation in the game-over banner.
+
+### Fix applied
+Replaced `f"GAME OVER"` with plain string `"GAME OVER"`.
+
+### Verification
+- Static analysis warning is resolved.
