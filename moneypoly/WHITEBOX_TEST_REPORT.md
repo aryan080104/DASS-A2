@@ -269,3 +269,19 @@ Repository tracked `__pycache__` and `.pyc` artifacts.
 
 ### Verification
 - Git status no longer includes generated cache artifacts for future runs.
+
+---
+
+## Iteration 14: Remove unused import in game module (`game.py`)
+
+### Why this test case is needed
+Reducing static-analysis noise improves confidence when auditing control-flow logic.
+
+### Error found
+Pylint reported unused import `os` in `game.py`.
+
+### Fix applied
+Removed the unused import.
+
+### Verification
+- Pylint no longer reports this unused import warning.
