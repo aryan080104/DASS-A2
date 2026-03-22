@@ -285,3 +285,19 @@ Removed the unused import.
 
 ### Verification
 - Pylint no longer reports this unused import warning.
+
+---
+
+## Iteration 15: Remove unused `GO_TO_JAIL_POSITION` import (`game.py`)
+
+### Why this test case is needed
+Unused symbols increase reading overhead during white-box analysis.
+
+### Error found
+Pylint reported unused `GO_TO_JAIL_POSITION` import in `game.py`.
+
+### Fix applied
+Removed the unused imported constant.
+
+### Verification
+- Static analysis warning is resolved.
