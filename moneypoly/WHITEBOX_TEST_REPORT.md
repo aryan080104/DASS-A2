@@ -320,6 +320,22 @@ Changed first `elif` to `if` after the `break` condition.
 
 ---
 
+## Iteration 20: Remove superfluous parentheses in range checks (`game.py`)
+
+### Why this test case is needed
+Cleaner branch predicates make path conditions easier to inspect in white-box testing.
+
+### Error found
+Pylint reported unnecessary parentheses after `not` in two trade-menu checks.
+
+### Fix applied
+Changed `if not (0 <= ...):` to `if not 0 <= ...:` in both places.
+
+### Verification
+- Both `superfluous-parens` warnings are resolved.
+
+---
+
 ## Iteration 16: Remove unused import in player module (`player.py`)
 
 ### Why this test case is needed
