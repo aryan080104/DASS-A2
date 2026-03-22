@@ -9,6 +9,7 @@ if str(PROJECT_SRC) not in sys.path:
 
 from moneypoly.dice import Dice  # noqa: E402
 from moneypoly.player import Player  # noqa: E402
+from moneypoly.property import Property, PropertyGroup  # noqa: E402
 
 
 class TestMoneyPolyWhiteBox(unittest.TestCase):
@@ -38,6 +39,21 @@ class TestMoneyPolyWhiteBox(unittest.TestCase):
         player.move(3)
         self.assertEqual(player.position, 1)
         self.assertEqual(player.balance, 1400)
+
+    def test_property_group_requires_all_tiles_for_monopoly_state(self):
+        """Branch/state test: partial ownership must not count as full group ownership."""
+        owner = Player("Owner")
+        other = Player("Other")
+        group = PropertyGroup("Brown", "brown")
+        p1 = Property("Mediterranean", 1, 60, 2, group)
+        p2 = Property("Baltic", 3, 60, 4, group)
+
+        p1.owner = owner
+        p2.owner = other
+        self.assertFalse(group.all_owned_by(owner))
+
+        p2.owner = owner
+        self.assertTrue(group.all_owned_by(owner))
 
 
 if __name__ == "__main__":

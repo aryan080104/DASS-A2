@@ -52,3 +52,25 @@ Changed condition to award salary when `steps > 0` and `old_position + steps >= 
 ### Verification
 - Added automated test: `test_player_move_collects_salary_when_passing_or_landing_go`.
 - Tests pass locally.
+
+---
+
+## Iteration 3: Fix full-group ownership logic (`PropertyGroup.all_owned_by()`)
+
+### Why this test case is needed
+Rent multiplier rules depend on complete color-group ownership. A wrong boolean condition changes rent values and game fairness.
+
+### Error found
+`all_owned_by()` used `any(...)` instead of `all(...)`, so owning only one property in a group incorrectly counted as owning the full group.
+
+### White-box test case
+- Create a group with two properties.
+- Give one to target owner and one to another player, verify `False`.
+- Then assign both to target owner, verify `True`.
+
+### Fix applied
+Replaced `any(...)` with `all(...)` and added a guard for empty groups.
+
+### Verification
+- Added automated test: `test_property_group_requires_all_tiles_for_monopoly_state`.
+- Tests pass locally.
