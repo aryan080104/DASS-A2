@@ -304,6 +304,22 @@ Removed the unused imported constant.
 
 ---
 
+## Iteration 19: Simplify menu branch chain after `break` (`game.py`)
+
+### Why this test case is needed
+Clear branch structure improves white-box readability and reduces hidden fall-through concerns.
+
+### Error found
+Pylint reported unnecessary `elif` after a `break` in the interactive menu flow.
+
+### Fix applied
+Changed first `elif` to `if` after the `break` condition.
+
+### Verification
+- Control-flow lint warning is resolved.
+
+---
+
 ## Iteration 16: Remove unused import in player module (`player.py`)
 
 ### Why this test case is needed
