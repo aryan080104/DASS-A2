@@ -73,6 +73,20 @@ class TestMoneyPolyWhiteBox(unittest.TestCase):
         self.assertEqual(payer.balance, payer_start - rent)
         self.assertEqual(owner.balance, owner_start + rent)
 
+    def test_buy_property_allows_exact_balance(self):
+        """Edge case: player with balance == price should be able to buy."""
+        game = Game(["P1", "P2"])
+        buyer = game.players[0]
+        prop = game.board.properties[0]
+        buyer.balance = prop.price
+
+        bought = game.buy_property(buyer, prop)
+
+        self.assertTrue(bought)
+        self.assertEqual(buyer.balance, 0)
+        self.assertIs(prop.owner, buyer)
+        self.assertIn(prop, buyer.properties)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -96,3 +96,24 @@ Added `prop.owner.add_money(rent)` after deducting from payer.
 ### Verification
 - Added automated test: `test_pay_rent_transfers_money_to_owner`.
 - Tests pass locally.
+
+---
+
+## Iteration 5: Fix exact-balance purchase rule (`Game.buy_property()`)
+
+### Why this test case is needed
+Affordability decisions are branch-critical. The edge case where `balance == price` must be handled correctly.
+
+### Error found
+`buy_property()` rejected purchases when player balance was exactly equal to property price.
+
+### White-box test case
+- Set player balance exactly to property price.
+- Attempt purchase and verify success, new balance `0`, and ownership transfer.
+
+### Fix applied
+Changed affordability check from `<=` to `<`.
+
+### Verification
+- Added automated test: `test_buy_property_allows_exact_balance`.
+- Tests pass locally.
