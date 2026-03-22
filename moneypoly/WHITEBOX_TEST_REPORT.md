@@ -368,6 +368,22 @@ Added trailing newline at end of file.
 
 ---
 
+## Iteration 23: Add missing final newline (`player.py`)
+
+### Why this test case is needed
+Formatting consistency keeps static checks clean and avoids non-functional diff noise.
+
+### Error found
+Pylint reported missing final newline in `player.py`.
+
+### Fix applied
+Added trailing newline at end of file.
+
+### Verification
+- Formatting warning for `player.py` final newline is resolved.
+
+---
+
 ## Iteration 16: Remove unused import in player module (`player.py`)
 
 ### Why this test case is needed
