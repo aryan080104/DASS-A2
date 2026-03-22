@@ -183,3 +183,19 @@ Updated `give_loan()` to route through `pay_out(amount)` before crediting the pl
 ### Verification
 - Added automated test: `test_bank_loan_reduces_bank_balance_and_increases_player_balance`.
 - Tests pass locally.
+
+---
+
+## Iteration 9: Remove unused import in bank module (`bank.py`)
+
+### Why this test case is needed
+Static-analysis warnings can hide real issues. Cleaning unused symbols improves maintainability and clarity during white-box review.
+
+### Error found
+Pylint reported unused import `math` in `bank.py`.
+
+### Fix applied
+Removed the unused `math` import.
+
+### Verification
+- Re-ran static analysis; the `bank.py` unused import warning is resolved.
