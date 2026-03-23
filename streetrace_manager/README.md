@@ -26,8 +26,19 @@ Implemented features:
 - Track spare parts quantity (add/use)
 - Track tools quantity
 
+## Module 4: Race Management
+
+Implemented features:
+- Create races
+- Enter driver+car into races with integration checks
+- Enforce business rules:
+	- Member must be registered
+	- Member role must be `driver`
+	- Car must exist and be in `ready` condition
+	- No duplicate driver/car entries in same race
+
 Run tests:
 
 ```bash
-python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py -v
+python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py tests/test_race_management_module.py -v
 ```
