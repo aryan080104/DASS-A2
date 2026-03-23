@@ -46,8 +46,17 @@ Implemented features:
 - Update inventory cash balance with prize money
 - Keep race result history and leaderboard
 
+## Module 6: Mission Planning
+
+Implemented features:
+- Create missions with required role sets
+- Assign crew members to missions
+- Validate required roles before assignment
+- Prevent mission start if required roles are unavailable
+- Track mission status (`planned` → `assigned` → `active`)
+
 Run tests:
 
 ```bash
-python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py tests/test_race_management_module.py tests/test_results_module.py -v
+python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py tests/test_race_management_module.py tests/test_results_module.py tests/test_mission_planning_module.py -v
 ```
