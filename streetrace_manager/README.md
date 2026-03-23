@@ -37,8 +37,17 @@ Implemented features:
 	- Car must exist and be in `ready` condition
 	- No duplicate driver/car entries in same race
 
+## Module 5: Results
+
+Implemented features:
+- Record race outcomes using placement order
+- Update driver ranking points (1st=10, 2nd=6, 3rd=3)
+- Mark race as completed after recording result
+- Update inventory cash balance with prize money
+- Keep race result history and leaderboard
+
 Run tests:
 
 ```bash
-python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py tests/test_race_management_module.py -v
+python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py tests/test_race_management_module.py tests/test_results_module.py -v
 ```
