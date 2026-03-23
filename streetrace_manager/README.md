@@ -18,8 +18,16 @@ Implemented features:
 - Track and update skill level (1-10)
 - List crew profiles by role
 
+## Module 3: Inventory
+
+Implemented features:
+- Track cash balance (add and spend with validation)
+- Track cars and update car condition (`ready`, `damaged`, `repairing`)
+- Track spare parts quantity (add/use)
+- Track tools quantity
+
 Run tests:
 
 ```bash
-python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py -v
+python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py -v
 ```
