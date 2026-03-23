@@ -1,0 +1,88 @@
+digraph StreetRaceCallGraph {
+  rankdir=LR;
+  node [shape=box, fontsize=10];
+  subgraph "cluster_crew_management" {
+    label="crew_management";
+    color=lightgrey;
+    "crew_management.CrewManagementModule.__init__";
+    "crew_management.CrewManagementModule.assign_role";
+    "crew_management.CrewManagementModule.get_profile";
+    "crew_management.CrewManagementModule.list_by_role";
+    "crew_management.CrewManagementModule.update_skill";
+  }
+  subgraph "cluster_inventory" {
+    label="inventory";
+    color=lightgrey;
+    "inventory.InventoryModule.__init__";
+    "inventory.InventoryModule.add_car";
+    "inventory.InventoryModule.add_cash";
+    "inventory.InventoryModule.add_spare_part";
+    "inventory.InventoryModule.add_tool";
+    "inventory.InventoryModule.get_car";
+    "inventory.InventoryModule.get_cash_balance";
+    "inventory.InventoryModule.get_spare_part_qty";
+    "inventory.InventoryModule.get_tool_qty";
+    "inventory.InventoryModule.list_cars";
+    "inventory.InventoryModule.mark_car_condition";
+    "inventory.InventoryModule.spend_cash";
+    "inventory.InventoryModule.use_spare_part";
+  }
+  subgraph "cluster_maintenance" {
+    label="maintenance";
+    color=lightgrey;
+    "maintenance.MaintenanceModule.__init__";
+    "maintenance.MaintenanceModule.list_repairs";
+    "maintenance.MaintenanceModule.repair_car";
+  }
+  subgraph "cluster_mission_planning" {
+    label="mission_planning";
+    color=lightgrey;
+    "mission_planning.MissionPlanningModule.__init__";
+    "mission_planning.MissionPlanningModule.assign_mission";
+    "mission_planning.MissionPlanningModule.can_start_mission";
+    "mission_planning.MissionPlanningModule.create_mission";
+    "mission_planning.MissionPlanningModule.get_mission";
+    "mission_planning.MissionPlanningModule.list_missions";
+    "mission_planning.MissionPlanningModule.start_mission";
+  }
+  subgraph "cluster_race_management" {
+    label="race_management";
+    color=lightgrey;
+    "race_management.RaceManagementModule.__init__";
+    "race_management.RaceManagementModule.create_race";
+    "race_management.RaceManagementModule.enter_race";
+    "race_management.RaceManagementModule.get_race";
+    "race_management.RaceManagementModule.list_races";
+  }
+  subgraph "cluster_registration" {
+    label="registration";
+    color=lightgrey;
+    "registration.RegistrationModule.__init__";
+    "registration.RegistrationModule.get_member";
+    "registration.RegistrationModule.is_registered";
+    "registration.RegistrationModule.list_members";
+    "registration.RegistrationModule.register_member";
+  }
+  subgraph "cluster_results" {
+    label="results";
+    color=lightgrey;
+    "results.ResultsModule.__init__";
+    "results.ResultsModule.get_driver_points";
+    "results.ResultsModule.get_leaderboard";
+    "results.ResultsModule.list_results";
+    "results.ResultsModule.record_race_result";
+  }
+  subgraph "cluster_sponsorship" {
+    label="sponsorship";
+    color=lightgrey;
+    "sponsorship.SponsorshipModule.__init__";
+    "sponsorship.SponsorshipModule.create_contract";
+    "sponsorship.SponsorshipModule.evaluate_contract";
+    "sponsorship.SponsorshipModule.get_contract";
+    "sponsorship.SponsorshipModule.list_contracts";
+  }
+  "mission_planning.MissionPlanningModule.can_start_mission" -> "mission_planning.MissionPlanningModule.get_mission";
+  "mission_planning.MissionPlanningModule.start_mission" -> "mission_planning.MissionPlanningModule.can_start_mission";
+  "mission_planning.MissionPlanningModule.start_mission" -> "mission_planning.MissionPlanningModule.get_mission";
+  "sponsorship.SponsorshipModule.evaluate_contract" -> "sponsorship.SponsorshipModule.get_contract";
+}

@@ -5,6 +5,14 @@
 ### Hand-drawn call graph requirement
 For submission, draw the call graph by hand and attach a clear image in this report section.
 
+Python-generated reference files are provided to make drawing faster:
+- [call_graph.dot](call_graph.dot)
+- [call_graph.mmd](call_graph.mmd)
+- Generator script: [generate_call_graph.py](generate_call_graph.py)
+
+Generation command:
+- `python streetrace_manager/generate_call_graph.py`
+
 Suggested image filename to add to repo:
 - streetrace_manager/call-graph-handdrawn.jpg
 
