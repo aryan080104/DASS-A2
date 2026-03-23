@@ -27,7 +27,31 @@ This submission contains three comprehensive testing exercises for DASS Assignme
 └── README.md                    # This file
 ```
 
-## How to Run Tests
+## How to Run Tests and Code
+
+### Prerequisites
+```bash
+python3 -m pip install pytest requests
+```
+
+### Run the Code
+
+#### White-box Code (MoneyPoly)
+```bash
+cd whitebox/code
+python3 main.py
+```
+
+#### Integration Code (StreetRace Manager Modules)
+```bash
+cd integration/code
+python3 -c "import registration, crew_management, inventory, race_management, results, mission_planning, maintenance, sponsorship; print('All integration modules imported successfully')"
+```
+
+#### Black-box API Target (QuickCart)
+QuickCart API must be running on `http://localhost:8080` before executing black-box tests.
+
+### Run the Tests
 
 ### White-box Testing (MoneyPoly)
 ```bash
@@ -123,7 +147,7 @@ pytest test_quickcart_api.py -v
 
 ## Git Repository
 
-**Repository Link**: [GitHub Repository](https://github.com/aryan080104/DASS-A2)
+**Repository Link**: [GitHub Repository](https://github.com/aryan080104/DASS-A2.git)
 
 All work has been committed to the Git repository with meaningful commit messages following the format:
 - Whitebox: `Iteration #: <description>` and `Error #: <description>`
