@@ -64,8 +64,17 @@ Implemented features:
 - Update repaired car condition back to `ready`
 - Keep repair history records
 
+## Module 8 (Extra): Sponsorship
+
+Implemented features:
+- Create sponsor contracts tied to target drivers
+- Evaluate contracts using points from race results
+- Trigger one-time sponsorship payouts
+- Update inventory cash balance when contracts are fulfilled
+- Track paid/unpaid contract state
+
 Run tests:
 
 ```bash
-python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py tests/test_race_management_module.py tests/test_results_module.py tests/test_mission_planning_module.py tests/test_maintenance_module.py -v
+python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py tests/test_race_management_module.py tests/test_results_module.py tests/test_mission_planning_module.py tests/test_maintenance_module.py tests/test_sponsorship_module.py -v
 ```
