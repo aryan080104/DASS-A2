@@ -55,8 +55,17 @@ Implemented features:
 - Prevent mission start if required roles are unavailable
 - Track mission status (`planned` → `assigned` → `active`)
 
+## Module 7 (Extra): Maintenance
+
+Implemented features:
+- Repair damaged cars
+- Require mechanic role for repair actions
+- Consume spare parts during repair
+- Update repaired car condition back to `ready`
+- Keep repair history records
+
 Run tests:
 
 ```bash
-python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py tests/test_race_management_module.py tests/test_results_module.py tests/test_mission_planning_module.py -v
+python -m unittest tests/test_registration_module.py tests/test_crew_management_module.py tests/test_inventory_module.py tests/test_race_management_module.py tests/test_results_module.py tests/test_mission_planning_module.py tests/test_maintenance_module.py -v
 ```
